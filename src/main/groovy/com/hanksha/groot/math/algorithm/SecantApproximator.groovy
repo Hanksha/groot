@@ -37,11 +37,11 @@ class SecantApproximator {
             fx2 = roundingMethod(func.eval(x2))
 
 
-            steps << "Step $n, x = $x2, fx = $fx2".toString()
+            steps << [n: n, x: x2, fx:fx2]
 
             println steps.last()
 
-            if(n != 1 && (Math.abs(x2 - prevX2) < interval || fx2 == fx1))
+            if(n != 1 && (Math.abs(x2 - prevX2) <= interval || fx2 == fx1))
                 break
 
             x0 = x1

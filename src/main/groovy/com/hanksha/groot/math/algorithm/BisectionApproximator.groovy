@@ -28,11 +28,11 @@ class BisectionApproximator {
 
             fx = roundingMethod(func.eval(x2))
 
-            steps << "Step $n, x = $x2, fx = $fx".toString()
+            steps << [n: n, x:x2, fx: fx]
 
             println steps.last()
 
-            if(n != 1 && Math.abs(x2 - prevX2) < interval)
+            if(n != 1 && Math.abs(x2 - prevX2) <= interval)
                 break
 
             if(fx < 0)

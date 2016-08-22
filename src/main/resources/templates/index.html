@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html ng-app="grootApp" lang="en">
+<head>
+  <title>CES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" href="/css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/vendor/bootstrap-theme.min.css"/>
+</head>
+<body>
+
+<div ng-controller="MainCtrl" class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <h2>GROOT</h2>
+      <p>GROOT is a Rest API that approximates the root of a function using various algorithms.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label>Function*</label>
+          <input ng-model="model.func" type="text" class="form-control" placeholder="f(x)">
+        </div>
+        <div class="form-group">
+          <label>x0*</label>
+          <input ng-model="model.x0" type="number" class="form-control">
+          <div ng-hide="model.algo == 'newtonraphson'">
+            <label>x1*</label>
+            <input ng-model="model.x1" type="number" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <select ng-model="model.algo">
+            <option value="bisection" selected>Bisection</option>
+            <option value="newtonraphson">Newton Raphson</option>
+            <option value="regulafalsi">Regula Falsi</option>
+            <option value="secant">Secant</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h3>Options</h3>
+          <label>Maximum iteration</label>
+          <input ng-model="model.options.maxIter" type="number" class="form-control">
+          <label>Precision</label>
+          <input ng-model="model.options.precision" type="number" class="form-control">
+          <label>Interval</label>
+          <input ng-model="model.options.interval" step="any" min="0" type="number" class="form-control">
+          <label>Rounding method</label>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="model.options.roundingMethod" name="roundingMethods" value="roundOff" checked>
+              Round Off
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="model.options.roundingMethod" name="roundingMethods" value="truncate">
+              Truncate
+            </label>
+          </div>
+        </div>
+        <button ng-click="execute()" class="btn btn-primary">Execute</button>
+        <button ng-click="clear()" class="btn btn-danger">Clear</button>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      <h2>Features</h2>
+
+      <h3>Algorithms</h3>
+      <ul>
+        <li>Bisection</li>
+        <li>Newton-Raphson</li>
+        <li>Regula falsi</li>
+        <li>Secant</li>
+      </ul>
+
+      <h3>Operators</h3>
+      <ul>
+        <li>+</li>
+        <li>-</li>
+        <li>*</li>
+        <li>/</li>
+        <li>% (mod)</li>
+        <li>^ (power)</li>
+      </ul>
+
+      <h3>Functions</h3>
+      <ul>
+        <li>cos</li>
+        <li>sin</li>
+        <li>tan</li>
+        <li>max</li>
+        <li>min</li>
+        <li>log</li>
+        <li>abs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8" ng-show="root">
+      <h2>Result</h2>
+      <strong>Approximate of the root: </strong>
+      <span>{{root}}</span>
+      <table class=" table table-striped">
+        <thead>
+        <tr>
+          <th>n</th>
+          <th>x</th>
+          <th>f(x)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="step in steps">
+          <td>{{step.n}}</td>
+          <td>{{step.x}}</td>
+          <td>{{step.fx}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/vendor/angular.min.js"></script>
+<script type="text/javascript" src="/js/grootApp.js"></script>
+
+</body>
+</html>

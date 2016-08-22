@@ -13,6 +13,6 @@ class RootApproximation {
 
     double root
 
-    List<String> steps
+    List<Map> steps
 
 }

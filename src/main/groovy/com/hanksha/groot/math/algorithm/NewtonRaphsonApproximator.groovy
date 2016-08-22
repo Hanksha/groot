@@ -18,10 +18,9 @@ class NewtonRaphsonApproximator {
         def n = 1l
         def fx = 0d
         def dfx = 0d
-        def h = 1e-10
         def prevX = 0d
 
-        def derivative = { (func.eval(x + h) - fx) / h }
+        def derivative = { (func.eval(x + fx) - fx) / fx }
 
         def steps = []
 
@@ -33,11 +32,11 @@ class NewtonRaphsonApproximator {
 
             x = roundingMethod(x - (fx / dfx))
 
-            steps << "Step $n, x = $x, fx = $fx, f'x=$dfx".toString()
+            steps << [n: n, x: x, fx: fx]
 
             println steps.last()
 
-            if(n != 1 && (Math.abs(x - prevX) < interval))
+            if(n != 1 && (Math.abs(x - prevX) <= interval))
                 break
 
             n++

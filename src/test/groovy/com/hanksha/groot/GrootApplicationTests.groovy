@@ -45,4 +45,13 @@ class GrootApplicationTests {
 			.andExpect(jsonPath('$.root', is(0.739085d)))
 			.andDo({slurper.parseText(it.response.contentAsString).steps.each {println it}})
 	}
+
+	@Test
+	void testRegulaFalsi() {
+		mockMvc.perform(get('/groot/regula-falsi')
+				.param('func','x - cos(x)').param('x0','-10').param('x1','10')
+				.accept(MediaType.APPLICATION_JSON_UTF8))
+			.andExpect(jsonPath('$.root', is(0.739085d)))
+			.andDo({slurper.parseText(it.response.contentAsString).steps.each {println it}})
+	}
 }

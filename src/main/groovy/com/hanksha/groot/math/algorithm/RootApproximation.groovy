@@ -9,6 +9,8 @@ import groovy.transform.Canonical
 @Canonical
 class RootApproximation {
 
+    public static MAX_NUM_ITER = 500
+
     double root
 
     List<String> steps

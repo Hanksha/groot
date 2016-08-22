@@ -22,7 +22,6 @@ class RegulaFalsiApproximator {
         def fx2 = 0d
         def prevX2 = 0d
 
-
         def regulaFunc = { (x0 * fx1 - x1 * fx0) / (fx1 - fx0) }
 
         def steps = []

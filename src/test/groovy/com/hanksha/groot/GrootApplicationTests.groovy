@@ -63,4 +63,13 @@ class GrootApplicationTests {
 			.andExpect(jsonPath('$.root', is(0.739085d)))
 			.andDo({slurper.parseText(it.response.contentAsString).steps.each {println it}})
 	}
+
+	@Test
+	void testNewtonRaphson() {
+		mockMvc.perform(get('/groot/newton-raphson')
+				.param('func','x - cos(x)').param('x','1')
+				.accept(MediaType.APPLICATION_JSON_UTF8))
+			.andExpect(jsonPath('$.root', is(0.739085d)))
+			.andDo({slurper.parseText(it.response.contentAsString).steps.each {println it}})
+	}
 }

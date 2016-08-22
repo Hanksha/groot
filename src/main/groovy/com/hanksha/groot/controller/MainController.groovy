@@ -2,6 +2,7 @@ package com.hanksha.groot.controller
 
 import com.hanksha.groot.math.Expression
 import com.hanksha.groot.math.algorithm.BisectionApproximator
+import com.hanksha.groot.math.algorithm.NewtonRaphsonApproximator
 import com.hanksha.groot.math.algorithm.RegulaFalsiApproximator
 import com.hanksha.groot.math.algorithm.SecantApproximator
 import org.springframework.http.HttpStatus
@@ -40,8 +41,23 @@ class MainController {
     }
 
     @RequestMapping(value = '/newton-raphson', method = RequestMethod.GET)
-    ResponseEntity newtonRaphson(@RequestParam String func, @RequestParam double x0, @RequestParam double x1) {
+    ResponseEntity newtonRaphson(
+            @RequestParam String func, @RequestParam double x,
+            @RequestParam(required = false) Integer maxIter,
+            @RequestParam(required = false) Integer precision,
+            @RequestParam(required = false) Double interval,
+            @RequestParam(required = false) String roundingMethod) {
 
+        def options = [:]
+
+        if(maxIter) options.maxIter = maxIter
+        if(precision) options.precision = precision
+        if(interval) options.interval = interval
+        if(roundingMethod) options.roundingMethod = roundingMethod
+
+        def rootApp = NewtonRaphsonApproximator.getRoot(new Expression(func), x, options)
+
+        new ResponseEntity(rootApp, HttpStatus.OK)
     }
 
     @RequestMapping(value = '/regula-falsi', method = RequestMethod.GET)

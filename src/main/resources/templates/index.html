@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html ng-app="grootApp" lang="en">
 <head>
-  <title>CES</title>
+  <title>Groot</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link rel="stylesheet" type="text/css" href="/css/vendor/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="/css/vendor/bootstrap-theme.min.css"/>
@@ -29,8 +29,10 @@
             <label>x1*</label>
             <input ng-model="model.x1" type="number" class="form-control">
           </div>
+          <span class="small">Note: f(x0) * f(x1) < 0</span>
         </div>
         <div class="form-group">
+          <label>Algorithm</label><br/>
           <select ng-model="model.algo">
             <option value="bisection" selected>Bisection</option>
             <option value="newtonraphson">Newton Raphson</option>
@@ -49,7 +51,8 @@
           <label>Rounding method</label>
           <div class="radio">
             <label>
-              <input type="radio" ng-model="model.options.roundingMethod" name="roundingMethods" value="roundOff" checked>
+              <input type="radio" ng-model="model.options.roundingMethod" name="roundingMethods" value="roundOff"
+                     checked>
               Round Off
             </label>
           </div>

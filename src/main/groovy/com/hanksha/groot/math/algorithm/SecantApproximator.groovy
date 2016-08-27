@@ -15,6 +15,9 @@ class SecantApproximator {
                 {double it -> it.trunc(precision)} :
                 {double it -> it.round(precision)}
 
+        if(func.eval(x0) * func.eval(x1) > 0)
+            return new RootApproximation(root: 0, steps: [])
+
         def n = 1l
         def x2 = 0d
         def fx0 = 0d
@@ -35,7 +38,6 @@ class SecantApproximator {
             x2 = roundingMethod(secantFunc())
 
             fx2 = roundingMethod(func.eval(x2))
-
 
             steps << [n: n, x: x2, fx:fx2]
 

@@ -15,6 +15,9 @@ class BisectionApproximator {
                                         {double it -> it.trunc(precision)} :
                                         {double it -> it.round(precision)}
 
+        if(func.eval(x0) * func.eval(x1) > 0)
+            return new RootApproximation(root: 0, steps: [])
+
         def n = 1l
         def x2 = 0d
         def prevX2 = 0d

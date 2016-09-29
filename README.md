@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Hanksha/groot.svg?branch=master)](https://travis-ci.org/Hanksha/groot)
 # GROOT
 
 GROOT is a Rest API that approximates the root of a function using various algorithms.
@@ -17,7 +18,7 @@ GROOT is a Rest API that approximates the root of a function using various algor
 * /
 * % (mod)
 * ^ (power)
- 
+
 ### Functions
 * cos
 * sin
@@ -26,4 +27,3 @@ GROOT is a Rest API that approximates the root of a function using various algor
 * min
 * log
 * abs
- 

@@ -11,7 +11,7 @@ abstract class Tokenizer {
     static final String REGEX
 
     static {
-        def pattern = '^\\d+$|[+*/%-\\^]|(?-)^\\d+$|,|\\(|\\)|(?![a-z])x(?![a-z])|cos|sin|tan|log|max|min|abs'
+        def pattern = '^\\d+$|[+*/%\\^]|-(?!\\d)|,|\\(|\\)|(?![a-z])x(?![a-z])|cos|sin|tan|log|max|min|abs'
         REGEX = "((?<=$pattern)|(?=$pattern))"
     }
 
